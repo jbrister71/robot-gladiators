@@ -45,6 +45,15 @@ var fight = function(enemyName) {;
 }
 
 for(var i = 0; i < enemyNames.length; i++) {
-    enemyHealth = 50;
-    fight(enemyNames[i]);
+    if(playerHealth > 0) {
+        enemyHealth = 50;
+        window.alert("Welcome to Robot Galdiators!");
+        window.alert("ROUND " + (i+1) +"!");
+        window.alert("FIGHT!");
+        fight(enemyNames[i]);
+    }
+    if(playerHealth <= 0) {
+        window.alert(playerName + " has fallen... Game over...");
+        break;
+    }
 }
