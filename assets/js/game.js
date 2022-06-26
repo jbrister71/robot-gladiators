@@ -3,6 +3,17 @@ var randomNumber = function(max, min) {
     return value;
 }
 
+var getPlayerName = function() {
+    var name = "";
+
+    while(name === null || name === "") {
+        name = prompt("What is your robot's name?");
+    }
+
+    console.log("Your name is " + name);
+    return name;
+}
+
 var fight = function(enemy) {;
     while(enemy.health > 0 && playerInfo.health > 0) {
         var promptFight = window.prompt("Would you like to FIGHT or SKIP this battle? Enter 'FIGHT' or 'SKIP' to choose.");
@@ -99,16 +110,8 @@ var shop = function() {
         
         case "upgrade":
         case "UPGRADE":
-            if (playerInfo.money >= 7) {
-                window.alert("Upgrading player attack.");
-                playerInfo.attack += 6;
-                playerInfo.money -= 7;
-                break;
-            }
-            else {
-                window.alert("You don't have enough money!");
-                break;
-            }
+            playerInfo.upgradeAttack();
+            break;
 
         case "leave":
         case "LEAVE":
@@ -123,7 +126,7 @@ var shop = function() {
 }
 
 var playerInfo = {
-    name: window.prompt("What is your robot's name?"),
+    name: getPlayerName(),
     health: 100,
     attack: 10,
     money: 10,
@@ -143,7 +146,14 @@ var playerInfo = {
         }
     },
     upgradeAttack: function() {
-
+        if (this.money >= 7) {
+            window.alert("Upgrading player attack.");
+            this.attack += 6;
+            this.money -= 7;
+        }
+        else {
+            window.alert("You don't have enough money!");
+        }
     }
 };
 
