@@ -135,9 +135,19 @@ var startGame = function() {
 
 var endGame = function() {
     window.alert("The game has now ended. Let's see how you did!");
+    var currentHighScore = parseInt(localStorage.getItem("money"));
+    currentHighScore = currentHighScore || 0;
 
     if(playerInfo.health > 0) {
         window.alert("Great job, you've survived the game! You now have a score of " + playerInfo.money + ".");
+        if(playerInfo.money > currentHighScore) {
+            window.alert("Congratulations! You beat the previous high score!");
+            localStorage.setItem("name", playerInfo.name);
+            localStorage.setItem("money", playerInfo.money);
+        }
+        else {
+            window.alert("You did not beat the previous high score.");
+        }
     }
     else {
         window.alert("You've lost your robot in battle...");
@@ -184,7 +194,7 @@ var playerInfo = {
     attack: 10,
     money: 10,
     reset: function() {
-        this.healthb = 100;
+        this.health = 100;
         this.attack = 10;
         this.money = 10;
     },
